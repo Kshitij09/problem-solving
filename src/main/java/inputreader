@@ -1,0 +1,18 @@
+private static class InputReader {
+    private final BufferedReader reader;
+    InputReader() {
+        reader = new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    int readLineAsInt() throws IOException {
+        return Integer.parseInt(readLine());
+    }
+
+    char[] readLineAsChars() throws IOException {
+        return readLine().toCharArray();
+    }
+
+    String readLine() throws IOException {
+        return reader.readLine().trim();
+    }
+}
