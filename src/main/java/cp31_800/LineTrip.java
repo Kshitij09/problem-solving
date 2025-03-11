@@ -11,34 +11,27 @@ public class LineTrip {
         int t = reader.readLineAsInt();
         for (int i=0; i<t; i++) {
             int[] vars = reader.readLineAsIntArray();
-            int dest = vars[1];
-            boolean[] isStation = new boolean[101];
-            String[] tokens = reader.readLine().split(" ");
-            for (String token : tokens) {
-                int a = Integer.parseInt(token);
-                isStation[a] = true;
+            int n = vars[0];
+            int x = vars[1];
+            int prev=0, ans=0;
+            String[] line = reader.readLine().split(" ");
+            for (int j=0; j<n; j++) {
+                int a = Integer.parseInt(line[j]);
+                ans = Math.max(ans, a - prev);
+                prev = a;
             }
-            System.out.println(minFuelTankFor(isStation, dest));
+            ans = Math.max(ans, 2*(x-prev));
+            System.out.println(ans);
         }
     }
 
-    private static int minFuelTankFor(boolean[] isStation, int dest) {
-        int minCapacity = 1;
-        int travelDistance = 0;
-        for (int i=0; i<dest; i++) {
-            if (isStation[i]) {
-                minCapacity = Math.max(minCapacity, travelDistance);
-                travelDistance=0;
-            }
-            travelDistance++;
+    private static int minFuelTankFor(int[] station, int dest) {
+        int minCapacity = station[0];
+        for (int i=1; i<station.length-1; i++) {
+            minCapacity = Math.max(minCapacity, station[i+1]-station[i]);
         }
-        for (int i=dest; i>0; i--) {
-            if (isStation[i]) {
-                minCapacity = Math.max(minCapacity, travelDistance);
-                travelDistance=0;
-            }
-            travelDistance++;
-        }
+        int last = station.length-1;
+        minCapacity = Math.max(minCapacity, 2 * (dest-station[last]));
         return minCapacity;
     }
 
