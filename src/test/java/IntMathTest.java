@@ -19,4 +19,12 @@ class IntMathTest {
     void pow() {
         assertEquals(64, IntMath.pow(2,6));
     }
+
+    @Test
+    void log2() {
+        assertEquals(3, IntMath.log2(8));
+        assertEquals(6, IntMath.log2(64));
+        assertEquals(5, IntMath.log2(63));
+        assertEquals(4, IntMath.log2(17));
+    }
 }

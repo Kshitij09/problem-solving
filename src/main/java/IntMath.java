@@ -31,4 +31,11 @@ public class IntMath {
         }
         return result;
     }
+
+    public static int log2(int x) {
+        if (x <= 0) {
+            throw new IllegalArgumentException("x must be positive");
+        }
+        return 31 - Integer.numberOfLeadingZeros(x);
+    }
 }
