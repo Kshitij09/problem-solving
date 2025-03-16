@@ -72,15 +72,29 @@ public class LongestPalindromicSubsequenceAfterAtMostKOperations {
     //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     int[][][] dp;
-    public int longestPalindromicSubsequence(String s, int k) {
+    public int longestPalindromicSubsequence(String s, int maxK) {
         int n = s.length();
-        dp = new int[n][n][k+1];
+        dp = new int[n][n][maxK+1];
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                Arrays.fill(dp[i][j], -1);
+            for (int k = 0; k <= maxK; k++) {
+                dp[i][i][k] = 1;
             }
         }
-        return f(0,s.length()-1, k, s.toCharArray());
+        char[] str = s.toCharArray();
+        for (int i=n-2; i>=0; i--) {
+            for (int j=i+1; j<n; j++) {
+                for (int k = 0; k <= maxK; k++) {
+                    int maxWithSkipping = Math.max(dp[i+1][j][k], dp[i][j-1][k]);
+                    int opsToMatch = minOperationsToMatch(str, i, j);
+                    int maxWithMatching = 0;
+                    if (opsToMatch <= k) {
+                        maxWithMatching = 2 + dp[i+1][j-1][k-opsToMatch];
+                    }
+                    dp[i][j][k] = Math.max(maxWithMatching, maxWithSkipping);
+                }
+            }
+        }
+        return dp[0][s.length()-1][maxK];
     }
 
     private int f(int i, int j, int k, char[] s) {
