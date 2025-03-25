@@ -3,6 +3,8 @@ package random;
 import java.io.*;
 import java.util.*;
 
+// TODO: Fix TLE
+// https://codeforces.com/problemset/problem/2081/D
 public class MSTinModuleGaph_Kruskal {
     public static void main(String[] args) {
         IO io = new IO(System.in, System.out);
