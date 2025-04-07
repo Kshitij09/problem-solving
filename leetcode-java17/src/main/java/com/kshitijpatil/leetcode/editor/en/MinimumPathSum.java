@@ -50,19 +50,23 @@ class Solution {
         rows = grid.length;
         cols = grid.length==0 ? 0 : grid[0].length;
         dp = new int[rows][cols];
-        for (int i=rows-1; i>=0; i--) {
-            for (int j=cols-1; j>=0; j--) {
-                if (i == rows-1 && j == cols-1) {
-                    dp[i][j] = grid[i][j];
-                    continue;
-                }
-                int pathSum = Integer.MAX_VALUE;
-                if (canGo(i,j+1)) pathSum = Math.min(pathSum, dp[i][j+1]);
-                if (canGo(i+1, j)) pathSum = Math.min(pathSum, dp[i+1][j]);
-                dp[i][j] = grid[i][j] + pathSum;
-            }
-        }
-        return dp[0][0];
+        for (int i=0; i<rows; i++) Arrays.fill(dp[i], -1);
+        // tabulation explores all paths while
+        // recursion explores only valid paths
+        // and performs better
+//        for (int i=rows-1; i>=0; i--) {
+//            for (int j=cols-1; j>=0; j--) {
+//                if (i == rows-1 && j == cols-1) {
+//                    dp[i][j] = grid[i][j];
+//                    continue;
+//                }
+//                int pathSum = Integer.MAX_VALUE;
+//                if (canGo(i,j+1)) pathSum = Math.min(pathSum, dp[i][j+1]);
+//                if (canGo(i+1, j)) pathSum = Math.min(pathSum, dp[i+1][j]);
+//                dp[i][j] = grid[i][j] + pathSum;
+//            }
+//        }
+        return f(0,0);
     }
 
     private int f(int i, int j) {
