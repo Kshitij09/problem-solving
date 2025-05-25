@@ -54,50 +54,52 @@ package com.kshitijpatil.leetcode.editor.en;
 //
 // Related Topics String Stack 👍 25743 👎 1877
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    private lateinit var st: CharArray
-    private var top = -1
+class ValidParentheses {
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        private lateinit var st: CharArray
+        private var top = -1
 
-    fun isValid(s: String): Boolean {
-        st = CharArray(s.length)
-        for (c in s) {
-            if (isStackEmpty() || c.isOpening()) {
-                push(c)
-                continue
+        fun isValid(s: String): Boolean {
+            st = CharArray(s.length)
+            for (c in s) {
+                if (isStackEmpty() || c.isOpening()) {
+                    push(c)
+                    continue
+                }
+                val lastOpening = pop()
+                val isMatching = when (lastOpening) {
+                    '[' -> c == ']'
+                    '(' -> c == ')'
+                    '{' -> c == '}'
+                    else -> false
+                }
+                if (!isMatching) return false
             }
-            val lastOpening = pop()
-            val isMatching = when (lastOpening) {
-                '[' -> c == ']'
-                '(' -> c == ')'
-                '{' -> c == '}'
-                else -> false
-            }
-            if (!isMatching) return false
+            return isStackEmpty()
         }
-        return isStackEmpty()
-    }
 
-    fun push(c: Char) {
-        st[++top] = c
-    }
+        fun push(c: Char) {
+            st[++top] = c
+        }
 
-    fun pop(): Char {
-        if (top < 0) throw NoSuchElementException()
-        return st[top--]
-    }
+        fun pop(): Char {
+            if (top < 0) throw NoSuchElementException()
+            return st[top--]
+        }
 
-    fun isStackEmpty(): Boolean {
-        return top == -1
-    }
+        fun isStackEmpty(): Boolean {
+            return top == -1
+        }
 
-    fun Char.isOpening(): Boolean {
-        return this == '(' || this == '{' || this == '['
+        fun Char.isOpening(): Boolean {
+            return this == '(' || this == '{' || this == '['
+        }
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+}
 
 
 fun main() {
-    val solution = Solution()
+    val solution = ValidParentheses.Solution()
 }

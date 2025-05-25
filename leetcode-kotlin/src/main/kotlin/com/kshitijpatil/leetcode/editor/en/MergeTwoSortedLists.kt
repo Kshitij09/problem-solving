@@ -40,53 +40,57 @@ package com.kshitijpatil.leetcode.editor.en;
 //
 // Related Topics Linked List Recursion 👍 23289 👎 2293
 
+class MergeTwoSortedLists {
 //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Example:
- * var li = ListNode(5)
- * var v = li.`val`
- * Definition for singly-linked list.
- * class ListNode(var `val`: Int) {
- *     var next: ListNode? = null
- * }
- */
-class Solution {
-    fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
-        val merged = ListNode(-1)
-        var current = merged; var l1 = list1; var l2 = list2
-        while (l1 != null && l2 != null) {
-            if (l1.`val` <= l2.`val`) {
+    /**
+     * Example:
+     * var li = ListNode(5)
+     * var v = li.`val`
+     * Definition for singly-linked list.
+     * class ListNode(var `val`: Int) {
+     *     var next: ListNode? = null
+     * }
+     */
+    class Solution {
+        fun mergeTwoLists(list1: ListNode?, list2: ListNode?): ListNode? {
+            val merged = ListNode(-1)
+            var current = merged;
+            var l1 = list1;
+            var l2 = list2
+            while (l1 != null && l2 != null) {
+                if (l1.`val` <= l2.`val`) {
+                    current.next = l1
+                    current = current.next!!
+                    l1 = l1.next
+                } else {
+                    current.next = l2
+                    current = current.next!!
+                    l2 = l2.next
+                }
+            }
+
+            while (l1 != null) {
                 current.next = l1
                 current = current.next!!
                 l1 = l1.next
-            } else {
+            }
+
+            while (l2 != null) {
                 current.next = l2
                 current = current.next!!
                 l2 = l2.next
             }
-        }
 
-        while (l1 != null) {
-            current.next = l1
-            current = current.next!!
-            l1 = l1.next
+            return merged.next
         }
-
-        while (l2 != null) {
-            current.next = l2
-            current = current.next!!
-            l2 = l2.next
-        }
-
-        return merged.next
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+}
 
 class ListNode(var `val`: Int) {
     var next: ListNode? = null
 }
 
 fun main() {
-    val solution = Solution()
+    val solution = MergeTwoSortedLists.Solution()
 }

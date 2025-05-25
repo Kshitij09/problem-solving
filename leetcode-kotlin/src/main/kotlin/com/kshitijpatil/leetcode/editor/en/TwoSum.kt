@@ -48,24 +48,26 @@ package com.kshitijpatil.leetcode.editor.en;
 //
 // Related Topics Array Hash Table 👍 61699 👎 2227
 
-//leetcode submit region begin(Prohibit modification and deletion)
-class Solution {
-    fun twoSum(nums: IntArray, target: Int): IntArray {
-        val index = hashMapOf<Int, Int>()
-        for (i in nums.indices) {
-            val extra = target - nums[i]
-            val otherIdx = index[extra]
-            if (otherIdx != null) {
-                return intArrayOf(otherIdx, i)
+class TwoSum {
+    //leetcode submit region begin(Prohibit modification and deletion)
+    class Solution {
+        fun twoSum(nums: IntArray, target: Int): IntArray {
+            val index = hashMapOf<Int, Int>()
+            for (i in nums.indices) {
+                val extra = target - nums[i]
+                val otherIdx = index[extra]
+                if (otherIdx != null) {
+                    return intArrayOf(otherIdx, i)
+                }
+                index[nums[i]] = i
             }
-            index[nums[i]] = i
+            error("Invalid input, no matching pair")
         }
-        error("Invalid input, no matching pair")
     }
-}
 //leetcode submit region end(Prohibit modification and deletion)
+}
 
 
 fun main() {
-    val solution = Solution()
+    val solution = TwoSum.Solution()
 }
