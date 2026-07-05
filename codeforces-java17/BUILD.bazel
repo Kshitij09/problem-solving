@@ -1,0 +1,24 @@
+load("//bazel/jvm:problems.bzl", "java_problem_targets")
+
+java_problem_targets(
+    name = "codeforces_java17",
+    main_srcs = [
+        "src/main/java/cp31_800/WalingMaster.java",
+        "src/main/java/random/ABCompilationErrors.java",
+        "src/main/java/random/BerSUBall.java",
+        "src/main/java/random/DZYChessboard.java",
+        "src/main/java/random/Dijkstra.java",
+        "src/main/java/random/ICPCBalloons.java",
+        "src/main/java/random/KefaAndPark.java",
+        "src/main/java/random/LongJumps.java",
+        "src/main/java/random/MSTinModuleGaph_Kruskal.java",
+        "src/main/java/random/MSTinModuloGraph_Prims.java",
+        "src/main/java/random/NewYearTransportation.java",
+        "src/main/java/random/Party.java",
+        "src/main/java/random/RegistrationSystem.java",
+        "src/main/java/random/SameDifferences.java",
+        "src/main/java/random/SumInBinaryTree.java",
+        "src/main/java/random/TwoButtons.java",
+    ],
+    javacopts = ["--release", "17"],
+)

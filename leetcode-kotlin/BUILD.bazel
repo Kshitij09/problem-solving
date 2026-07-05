@@ -1,0 +1,11 @@
+load("//bazel/jvm:problems.bzl", "kotlin_problem_targets")
+
+kotlin_problem_targets(
+    name = "leetcode_kotlin",
+    main_srcs = [
+        "src/main/kotlin/com/kshitijpatil/leetcode/editor/en/BestTimeToBuyAndSellStock.kt",
+        "src/main/kotlin/com/kshitijpatil/leetcode/editor/en/MergeTwoSortedLists.kt",
+        "src/main/kotlin/com/kshitijpatil/leetcode/editor/en/TwoSum.kt",
+        "src/main/kotlin/com/kshitijpatil/leetcode/editor/en/ValidParentheses.kt",
+    ],
+)

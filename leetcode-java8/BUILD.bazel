@@ -1,0 +1,29 @@
+load("//bazel/jvm:problems.bzl", "java_problem_targets")
+
+java_problem_targets(
+    name = "leetcode_java8",
+    support_srcs = [
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/ListNode.java",
+    ],
+    main_srcs = [
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/AddTwoNumbers.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/BestTimeToBuyAndSellStock.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/ClimbingStairs.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/ContainerWithMostWater.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/LetterCombinationsOfAPhoneNumber.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/LongestConsecutiveSequence.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/LongestPalindromicSubsequence.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/LongestPalindromicSubsequenceAfterAtMostKOperations.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/LongestSubstringWithoutRepeatingCharacters.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/MedianOfTwoSortedArrays.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/MergeSortedArray.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/PalindromeNumber.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/RemoveDuplicatesFromSortedArray.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/ReverseInteger.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/ThreeSum.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/TwoSum.java",
+        "src/main/java/com/kshitijpatil/leetcode/editor/en/ValidAnagram.java",
+    ],
+    javacopts = ["--release", "8"],
+)
+

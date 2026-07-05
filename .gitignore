@@ -37,3 +37,10 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Bazel ###
+/.bazel_output/
+/bazel-bin
+/bazel-out
+/bazel-testlogs
+/bazel-*
