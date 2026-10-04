@@ -49,3 +49,8 @@ bin/
 /AGENTS.md
 /CLAUDE.md
 /notes/
+
+### Python ###
+.venv/
+__pycache__/
+.pytest_cache/
