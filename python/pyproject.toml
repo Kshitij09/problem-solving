@@ -1,0 +1,25 @@
+# Python tooling for projects/ and leetcode/, managed by uv. Run from this directory:
+#   uv sync          # create/refresh .venv from uv.lock
+#   uv run pytest    # run every Python test
+[project]
+name = "problem-solving"
+version = "0"
+requires-python = ">=3.14"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest",
+    # Used by leetgo-generated solutions (versions pinned to what leetgo v1.5.0 installs)
+    "leetgo_py==0.2.4",
+    "sortedcontainers==2.4.0",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["projects", "leetcode"]
+pythonpath = ["tools"]
+addopts = "-q -p pytest_leetgo"
+norecursedirs = [".venv", ".*"]

@@ -6,4 +6,4 @@ def greet(name: str) -> str:
 
 
 if __name__ == "__main__":
-    print(greet("projects-python"))
+    print(greet("python/projects"))

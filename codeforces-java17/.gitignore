@@ -8,6 +8,7 @@ build/
 .idea/
 *.iws
 *.iml
+!/codeforces-java17.iml
 *.ipr
 out/
 !**/src/main/**/out/

@@ -1,4 +1,0 @@
-pytest
-# Used by leetgo-generated solutions (versions pinned to what leetgo v1.5.0 installs)
-leetgo_py==0.2.4
-sortedcontainers==2.4.0

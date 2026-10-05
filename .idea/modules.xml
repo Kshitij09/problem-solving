@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/problem-solving.iml" filepath="$PROJECT_DIR$/.idea/problem-solving.iml" />
+      <module fileurl="file://$PROJECT_DIR$/python/python.iml" filepath="$PROJECT_DIR$/python/python.iml" />
+      <module fileurl="file://$PROJECT_DIR$/codeforces-java8/codeforces-java8.iml" filepath="$PROJECT_DIR$/codeforces-java8/codeforces-java8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/codeforces-java17/codeforces-java17.iml" filepath="$PROJECT_DIR$/codeforces-java17/codeforces-java17.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leetcode-java8/leetcode-java8.iml" filepath="$PROJECT_DIR$/leetcode-java8/leetcode-java8.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leetcode-java17/leetcode-java17.iml" filepath="$PROJECT_DIR$/leetcode-java17/leetcode-java17.iml" />
+      <module fileurl="file://$PROJECT_DIR$/leetcode-kotlin/leetcode-kotlin.iml" filepath="$PROJECT_DIR$/leetcode-kotlin/leetcode-kotlin.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,6 +1,6 @@
 # leetgo configuration: https://github.com/j178/leetgo
 #   leetgo pick 150          # fetch problem: solution.py, testcases.txt, question.md
-#   leetgo test last -L      # run examples locally (or: pytest / bazel test)
+#   leetgo test last -L      # run examples locally (or: uv run pytest)
 #   leetgo submit last       # submit the code between the @lc markers
 author: Kshitij Patil
 language: en
@@ -11,8 +11,8 @@ code:
   modifiers:
     - name: removeUselessComments
   python3:
-    out_dir: leetcode-python
-    # Must match the Bazel toolchain and the root .venv (bazel/python/python.MODULE.bazel).
+    out_dir: leetcode
+    # Must match python/.venv (.python-version, managed by uv).
     executable: python3.14
 leetcode:
   site: https://leetcode.com

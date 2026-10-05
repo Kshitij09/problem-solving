@@ -1,105 +1,77 @@
 # problem-solving
 
 Collection of leetcode & codeforces problems solved using Java 8, Java 17, Kotlin
-and Python, plus small Python projects (`projects-python/`)
+and Python, plus small Python projects (`python/projects/`)
 
 JVM solutions use the [leetcode-editor](https://github.com/shuzijun/leetcode-editor)
 IntelliJ plugin. Python solutions use the [leetgo](https://github.com/j178/leetgo) CLI
 (see [LeetCode with leetgo](#leetcode-with-leetgo)).
 
-## Bazel Build Support
+## IDE setup
 
-Every language builds with Bazel (bzlmod). Bazel's version is pinned in `.bazelversion`;
-use [bazelisk](https://github.com/bazelbuild/bazelisk) so it's picked up automatically.
+Open the repo root in IntelliJ IDEA. It's a plain IntelliJ (JPS) project: the modules are listed
+in `.idea/modules.xml`, with one `.iml` per language module. There's no Gradle or Bazel.
 
-```bash
-bazel test //...
-```
+| Module | Language level | Notes |
+|---|---|---|
+| `leetcode-java8`, `codeforces-java8` | Java 8 | JUnit 5 for `codeforces-java8` tests |
+| `leetcode-java17`, `codeforces-java17` | Java 17 | |
+| `leetcode-kotlin` | Kotlin (JVM 17) | `KotlinJavaRuntime` library |
+| `python` (`python/python.iml`) | Python 3.14 | everything under `python/` |
 
-### Running a Solution
-You can build and run any solution target directly using:
-```bash
-bazel run //<module-directory>:<ProblemName>
-```
-For example:
-```bash
-bazel run //leetcode-kotlin:TwoSum
-```
+The project JDK is `zulu-17`. The JUnit and Kotlin libraries are Maven-backed
+(`.idea/libraries/`), and IntelliJ downloads them on first open.
 
-### Adding a New Solution
-When you add a new problem solution file under a JVM module, update the `main_srcs` parameter inside the module's `BUILD.bazel` file:
-```bazel
-kotlin_problem_targets(
-    name = "leetcode_kotlin",
-    main_srcs = [
-        ...
-        "src/main/kotlin/com/kshitijpatil/leetcode/editor/en/NewProblem.kt",
-    ],
-)
-```
-
-### Adding Support Code / Shared Utils
-If you add helper or support classes (like custom data structures, Fast I/O helpers) that are imported by other solution files:
-1. List them under the `support_srcs` parameter of the macro.
-2. The macro will compile them into a shared library that all `main_srcs` targets depend on automatically.
-
-For example:
-```bazel
-java_problem_targets(
-    name = "codeforces_java8",
-    support_srcs = [
-        "src/main/java/IO.java",
-        "src/main/java/IntMath.java",
-    ],
-    main_srcs = [
-        ...
-    ],
-)
-```
+To run a solution, use the gutter arrow on `main`. New files need no build edits.
 
 ## Python
 
-Python 3.14, in both Bazel's hermetic toolchain and the local venv. Dependencies (just
-`pytest`) are pinned in `bazel/python/requirements_lock.txt`.
+All Python lives in `python/`, a [uv](https://docs.astral.sh/uv/) project on Python 3.14.
+`python/pyproject.toml` holds the dev
+dependencies (pytest, plus `leetgo_py` and `sortedcontainers` for leetgo solutions) and the
+pytest config. `uv.lock` pins them. Run uv commands from `python/`:
 
-### Local setup (for IntelliJ and quick iteration)
 ```bash
-python3.14 -m venv .venv
-.venv/bin/pip install --require-hashes -r bazel/python/requirements_lock.txt
-.venv/bin/python -m pytest
+cd python
+uv sync          # create/refresh python/.venv
+uv run pytest    # run every Python test
+uv run python projects/01_calc/calc.py
 ```
-Set `.venv` as the IntelliJ project interpreter and run tests with the pytest runner.
 
-### Layout and targets
-Each top-level directory under a Python module is one problem or project. The
-`py_problem_targets` macro (`bazel/python/problems.bzl`) globs them, so **no BUILD
-edits are needed** when adding files. For a directory `d` it generates:
-- `d/<module>`: a `py_binary` per source, for `if __name__ == "__main__":` try-outs
-- `d/<test_module>`: a `py_test` per `test_*.py`, run under pytest
+In IntelliJ, set the `python` module's interpreter to the uv `python/.venv`: Settings → Project
+Structure → Modules → python, or Add Interpreter → uv → existing environment. Then a right-click
+→ Run on any `.py` file gives you a normal interactive process, and pytest is the test runner.
 
-```bash
-bazel test //projects-python/...
-bazel run //projects-python:00_template.greet
+### Layout
 ```
-Modules within a directory import each other flatly (`from greet import greet`). Keep
-test file names unique across directories (`test_<project>.py`).
+python/
+  pyproject.toml  uv.lock  .python-version  python.iml  leetgo.yaml
+  tools/       pytest_leetgo plugin
+  projects/    the project track (copy 00_template/)
+  leetcode/    leetgo problems
+```
 
-### Updating dependencies
-Edit `bazel/python/requirements.in`, then:
+Each top-level directory under `projects/` or `leetcode/` is one problem or
+project. Modules in a directory import each other flatly (`from greet import greet`), because
+both pytest and the script runner put the file's own directory on `sys.path`. Keep test file
+names unique across directories (`test_<project>.py`).
+
+### Adding dependencies
 ```bash
-bazel run //bazel/python:requirements.update
+uv add --dev <package>
 ```
 
 ## LeetCode with leetgo
 
 Install: `go install github.com/j178/leetgo@v1.5.0` (and put `$(go env GOPATH)/bin` on `PATH`).
 Log in to leetcode.com in your browser; leetgo reads the session cookies from it
-(`leetgo.yaml` → `leetcode.credentials`).
+(`python/leetgo.yaml` → `leetcode.credentials`).
 
 ```bash
-leetgo pick 150            # leetcode-python/0150.evaluate-reverse-polish-notation/
+cd python
+leetgo pick 150            # leetcode/0150.evaluate-reverse-polish-notation/
                            #   solution.py, testcases.txt (examples), question.md
-.venv/bin/python -m pytest leetcode-python/0150.evaluate-reverse-polish-notation
+uv run pytest leetcode/0150.evaluate-reverse-polish-notation
 leetgo submit last
 ```
 
@@ -107,8 +79,8 @@ leetgo submit last
   submitted**; the `if __name__ == "__main__":` harness below it is for local runs.
 - `testcases.txt` holds the examples. Add your own cases in the same `input:` / `output:` format.
   A case without an output is skipped locally.
-- Each example becomes a pytest item (`case1`, `case2`, ...) via `bazel/python/pytest_leetgo.py`,
-  so they show up individually in IntelliJ's test runner and in `bazel test //leetcode-python/...`.
+- Each example becomes a pytest item (`case1`, `case2`, ...) via `python/tools/pytest_leetgo.py`,
+  so they show up individually in IntelliJ's test runner.
 - The extra `submission` item reruns all examples using only the code inside the markers, plus
   `from typing import *`, `ListNode` and `TreeNode`. It fails if you rely on imports or helpers
   defined outside the markers. Put imports (`collections`, `heapq`, ...) inside the markers.
@@ -119,6 +91,6 @@ leetgo submit last
   def judge(expected, actual) -> bool:
       return sorted(map(sorted, expected)) == sorted(map(sorted, actual))
   ```
-- `leetgo test last -L` also works; it uses its own venv in `leetcode-python/.venv` and
+- `leetgo test last -L` also works; it uses its own venv in `python/leetcode/.venv` and
   doesn't know about `judge.py`.
 

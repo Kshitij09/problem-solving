@@ -5,9 +5,18 @@ build/
 !**/src/test/**/build/
 
 ### IntelliJ IDEA ###
-.idea/
+# The root project's module setup (JPS) is checked in; personal IDE state is not.
+.idea/*
+!.idea/modules.xml
+!.idea/misc.xml
+!.idea/libraries/
+*/.idea/
 *.iws
 *.iml
+!/*.iml
+!/*/*.iml
+.idea/*.iml
+!.idea/problem-solving.iml
 *.ipr
 out/
 !**/src/main/**/out/
@@ -57,4 +66,4 @@ __pycache__/
 
 ### leetgo ###
 .env
-leetcode-python/requirements.txt
+python/leetcode/requirements.txt

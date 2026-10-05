@@ -1,3 +1,0 @@
-# Virtualenvs (root, and the one leetgo manages for `leetgo test -L`)
-.venv
-leetcode-python/.venv
