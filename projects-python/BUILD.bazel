@@ -2,5 +2,5 @@ load("//bazel/python:problems.bzl", "py_problem_targets")
 
 # One directory per project; see notes/projects.md.
 #   bazel test //projects-python/...
-#   bazel run //projects-python:00_template/greet
+#   bazel run //projects-python:00_template.greet
 py_problem_targets(name = "projects")

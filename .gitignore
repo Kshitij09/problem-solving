@@ -54,3 +54,7 @@ bin/
 .venv/
 __pycache__/
 .pytest_cache/
+
+### leetgo ###
+.env
+leetcode-python/requirements.txt
