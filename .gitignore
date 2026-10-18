@@ -8,7 +8,6 @@ build/
 # The root project's module setup (JPS) is checked in; personal IDE state is not.
 .idea/*
 !.idea/modules.xml
-!.idea/misc.xml
 !.idea/libraries/
 */.idea/
 *.iws
