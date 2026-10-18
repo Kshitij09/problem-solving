@@ -1,0 +1,8 @@
+input: {"nums":[7,0,0,1,7,7,2,7,7]}
+output: 7
+
+input: {"nums":[2,1,2,1,1,1]}
+output: 1
+
+input: {"nums":[-1,-1,-1,-1]}
+output: -1
