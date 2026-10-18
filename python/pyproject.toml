@@ -19,7 +19,7 @@ dev = [
 package = false
 
 [tool.pytest.ini_options]
-testpaths = ["projects", "leetcode"]
+testpaths = ["projects", "leetcode", "tools"]
 pythonpath = ["tools"]
 addopts = "-q -p pytest_leetgo"
 norecursedirs = [".venv", ".*"]
