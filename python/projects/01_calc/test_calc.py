@@ -1,10 +1,6 @@
 import pytest
 
-from calc import evaluate, tokenize
-
-
-def test_tokenize():
-    assert tokenize("12+3 * (4-1)") == ["12", "+", "3", "*", "(", "4", "-", "1", ")"]
+from calc import evaluate
 
 
 @pytest.mark.parametrize(

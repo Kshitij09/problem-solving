@@ -1,15 +1,11 @@
 """P01 calc: an expression evaluator REPL. See notes/projects.md#p01."""
 
 
-def tokenize(src: str) -> list[str]:
-    """Split `src` into number, operator and parenthesis tokens: '2*(3+4)' -> ['2', '*', '(', ...]."""
-    raise NotImplementedError
-
-
 def evaluate(src: str) -> int:
     """Evaluate an integer expression with + - * /, precedence and parentheses.
 
     `/` truncates toward zero (like LeetCode 227), so 7 / -2 == -3.
+    Raises ValueError on malformed input. How you get there is up to you.
     """
     raise NotImplementedError
 
