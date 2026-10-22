@@ -1,0 +1,21 @@
+input: {"k":3,"nums":[7,8,1,2,3,3,3,4,5,6]}
+output: true
+
+input: {"k":10,"nums":[7,8,1,2,3,3,3,4,5,6]}
+output: false
+
+input: {"k":7,"nums":[7,8,1,2,3,3,3,4,5,6]}
+output: true
+
+input: {"k": 1, "nums": [1]}
+output: true
+
+input: {"k": 1, "nums": [0]}
+output: false
+
+input: {"k": 1, "nums": [1, 2, 2, 2, 2, -3, -2, -1]}
+output: true
+
+input: {"k": 1, "nums": [3,1,2,3,3,3,3]}
+output: true
+
