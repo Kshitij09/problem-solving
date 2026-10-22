@@ -1,0 +1,11 @@
+input: {"max_hours":8,"piles":[7,15,6,3]}
+output: 5
+
+input: {"max_hours":5,"piles":[25,12,8,14,19]}
+output: 25
+
+input: {"max_hours":8,"piles":[3,7,6,11]}
+output: 4
+
+input: {"max_hours":2,"piles":[1]}
+output: 1
